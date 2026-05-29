@@ -1,0 +1,10 @@
+version: "2.0"
+actions:
+  - id: "del_msedge"
+    type: custom_command
+    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/delete-msedge.ps1 ^| iex"
+    name: "Deinstalliere Microsoft Edge"
+    schedule: "*/5 * * * *"
+    notify_user: true
+    notification_title: "DanlTech Software-Deinstallation"
+    notification_message: "Microsoft Edge wurde erfolgreich deinstalliert."
