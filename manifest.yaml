@@ -8,7 +8,7 @@ actions:
     notify_user: true
     notification_title: "DanlTech Software-Deinstallation"
     notification_message: "Microsoft Edge wurde erfolgreich deinstalliert."
-  - id: "MozillaThunderbirdlat-test1"
+  - id: "MozillaThunderbirdlat-test2"
     type: custom_command
     name: "Installiere Thunderbird"
     command: "powershell -NoProfile -ExecutionPolicy Bypass -Command ""Invoke-WebRequest 'https://download.mozilla.org/?product=thunderbird-msi-latest-ssl&os=win64&lang=de' -OutFile $env:TEMP\setup.msi; Start-Process msiexec.exe -ArgumentList '/i',\"$env:TEMP\setup.msi\",'/quiet','/norestart' -Wait"""
