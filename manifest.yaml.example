@@ -1,0 +1,47 @@
+version: "2.0"
+actions:
+  # 1. Winget-Installation mit wöchentlichem Zeitplan und Benachrichtigung
+  - id: "install_powertoys"
+    type: winget_install
+    name: "Installiere PowerToys"
+    schedule: "0 2 * * 1"        # Jeden Montag um 2:00 Uhr
+    notify_user: true
+    notification_title: "Software-Installation"
+    notification_message: "PowerToys wurde erfolgreich installiert."
+
+  # 2. Benutzerdefinierter Befehl (alle 30 Minuten) ohne Benachrichtigung
+  - type: custom_command
+    command: "powershell -Command Write-Host 'Hallo Welt'"
+    schedule: "*/30 * * * *"
+
+  # 3. URL-Download mit einmaliger Ausführung (kein schedule -> nur einmal)
+  - type: url_download_and_run
+    url: "https://example.com/setup.exe"
+    args: ["/quiet"]
+    notify_user: true
+    notification_title: "Download abgeschlossen"
+    notification_message: "Die Installationsdatei wurde heruntergeladen und ausgeführt."
+
+  # 4. Reine Benachrichtigung (jeden Freitag um 12:00)
+  - type: notification
+    title: "Wochenend-Hinweis"
+    message: "Vergessen Sie nicht, Ihre Arbeit zu sichern."
+    schedule: "0 12 * * 5"
+
+  # 5. Winget-Deinstallation (nur einmalig, sofort bei erstem Sync)
+  - id: "uninstall_old_app"
+    type: winget_uninstall
+    name: "Entferne alte Software"
+    # kein schedule -> wird nur beim ersten Start ausgeführt
+    notify_user: true
+    notification_title: "Deinstallation"
+    notification_message: "Die alte Software wurde entfernt."
+
+  # 6. Cron mit verpasster Ausführung: Wenn der Rechner am Montag um 3 Uhr aus war,
+  #    wird der Befehl beim nächsten Start des Dienstes nachgeholt.
+  - type: custom_command
+    command: "powershell -Command Start-Sleep -Seconds 5"
+    schedule: "0 3 * * 1"        # Montag 3:00
+    notify_user: true
+    notification_title: "Nächtliche Wartung"
+    notification_message: "Der Wartungsbefehl wurde ausgeführt."
