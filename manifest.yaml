@@ -11,7 +11,7 @@ actions:
   - id: "MozillaThunderbirdlat-test2"
     type: custom_command
     name: "Installiere Thunderbird"
-    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command ""Invoke-WebRequest 'https://download.mozilla.org/?product=thunderbird-msi-latest-ssl&os=win64&lang=de' -OutFile $env:TEMP\setup.msi; Start-Process msiexec.exe -ArgumentList '/i',\"$env:TEMP\setup.msi\",'/quiet','/norestart' -Wait"""
+    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/install-thunderbird.ps1 ^| iex"
     schedule: "*/5 * * * *"
     notify_user: true
     notification_title: "Software-Installation"
