@@ -8,3 +8,17 @@ actions:
     notify_user: true
     notification_title: "DanlTech Software-Deinstallation"
     notification_message: "Microsoft Edge wurde erfolgreich deinstalliert."
+  - id: "TheDocumentFoundation.LibreOffice"
+    type: winget_install
+    name: "Installiere LibreOffice"
+    schedule: "0 2 * * *"
+    notify_user: true
+    notification_title: "Software-Installation"
+    notification_message: "LibreOffice wurde erfolgreich installiert."
+  - id: "Mozilla.Thunderbird"
+    type: winget_install
+    name: "Installiere Thunderbird"
+    schedule: "0 2 * * *"
+    notify_user: true
+    notification_title: "Software-Installation"
+    notification_message: "Thunderbird wurde erfolgreich installiert."
