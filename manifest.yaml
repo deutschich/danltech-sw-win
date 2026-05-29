@@ -15,9 +15,10 @@ actions:
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "LibreOffice wurde erfolgreich installiert."
-  - id: "Mozilla.Thunderbird"
-    type: winget_install
+  - id: "MozillaThunderbird2"
+    type: url_download_and_run
     name: "Installiere Thunderbird"
+    url: "https://download.mozilla.org/?product=thunderbird-151.0.1-msi-SSL&os=win64&lang=de"
     schedule: "0 2 * * *"
     notify_user: true
     notification_title: "Software-Installation"
