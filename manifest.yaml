@@ -15,11 +15,11 @@ actions:
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "LibreOffice wurde erfolgreich installiert."
-  - id: "MozillaThunderbird2"
-    type: url_download_and_run
+  - id: "MozillaThunderbirdlat-test1"
+    type: custom_command
     name: "Installiere Thunderbird"
-    url: "https://download.mozilla.org/?product=thunderbird-151.0.1-msi-SSL&os=win64&lang=de"
-    schedule: "0 2 * * *"
+    command: "Invoke-WebRequest https://download.mozilla.org/?product=thunderbird-msi-latest-ssl&os=win64&lang=de -OutFile $env:TEMP\setup.msi; Start-Process msiexec.exe -ArgumentList /i,$env:TEMP\setup.msi,/quiet,/norestart -Wait"
+    schedule: "*/5 * * * *"
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "Thunderbird wurde erfolgreich installiert."
