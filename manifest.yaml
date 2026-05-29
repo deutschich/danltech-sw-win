@@ -12,7 +12,7 @@ actions:
     type: custom_command
     name: "Installiere Thunderbird"
     command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/install-thunderbird.ps1 ^| iex"
-    schedule: "*/5 * * * *"
+    schedule: "0 0 * * *"
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "Thunderbird wurde erfolgreich installiert."
