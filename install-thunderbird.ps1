@@ -1,0 +1,1 @@
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Invoke-WebRequest 'https://download.mozilla.org/?product=thunderbird-msi-latest-ssl&os=win64&lang=de' -OutFile $env:TEMP\setup.msi; Start-Process msiexec.exe -ArgumentList '/i',\"$env:TEMP\setup.msi\",'/quiet','/norestart' -Wait
