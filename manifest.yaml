@@ -20,7 +20,7 @@ actions:
     type: custom_command
     name: "Installiere VLC"
     command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/install-vlc.ps1 ^| iex"
-    schedule: "1 0 * * *"
+    schedule: "1 0 * * 1"
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "VLC wurde erfolgreich installiert."
