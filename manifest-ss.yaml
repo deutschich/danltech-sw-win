@@ -48,12 +48,3 @@ actions:
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "7-zip wurde erfolgreich installiert."
-  - id: "vscodium-test1"
-    type: custom_command
-    name: "Installiere vscodium"
-    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/scripts/install-vscodium.ps1 ^| iex"
-    schedule: "1 0 */14 * *"
-    notify_user: true
-    notification_title: "Software-Installation"
-    notification_message: "vscodium wurde erfolgreich installiert."
-    
