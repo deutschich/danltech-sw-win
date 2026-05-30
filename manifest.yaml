@@ -56,3 +56,11 @@ actions:
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "7-zip wurde erfolgreich installiert."
+  - id: "nppp-test1"
+    type: custom_command
+    name: "Installiere Notepad++"
+    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/scripts/install-nppp.ps1 ^| iex"
+    schedule: "1 0 */14 * *"
+    notify_user: true
+    notification_title: "Software-Installation"
+    notification_message: "Notepad++ wurde erfolgreich installiert."
