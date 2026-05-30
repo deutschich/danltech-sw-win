@@ -40,3 +40,11 @@ actions:
     notify_user: true
     notification_title: "Software-Installation"
     notification_message: "LibreOffice wurde erfolgreich installiert."
+  - id: "KeePassXC-test1"
+    type: custom_command
+    name: "Installiere KeePassXC"
+    command: "powershell -NoProfile -ExecutionPolicy Bypass -Command irm https://raw.githubusercontent.com/deutschich/danltech-sw-win/main/scripts/install-keepassxc.ps1 ^| iex"
+    schedule: "1 0 */14 * *"
+    notify_user: true
+    notification_title: "Software-Installation"
+    notification_message: "KeePassXC wurde erfolgreich installiert."
