@@ -35,7 +35,7 @@ if (-not (Test-Path -Path $InstallPath)) {
 $ZipPath = Join-Path $env:TEMP "SysinternalsSuite.zip"
 try {
     $ProgressPreference = "SilentlyContinue"
-    Invoke-WebRequest -Uri $DownloadUrl -OutFile $ZipPath -ErrorAction Stop
+    curl.exe -L --fail -o "$ZipPath" "$DownloadUrl"
     Write-Host "Download erfolgreich nach '$ZipPath'."
 } catch {
     Write-Error "Download fehlgeschlagen: $_"
