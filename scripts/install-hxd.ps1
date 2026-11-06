@@ -11,14 +11,18 @@ New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 New-Item -ItemType Directory -Force -Path $StartMenu | Out-Null
 Set-Location $TmpDir
 
-Write-Host "[*] Downloading HxD ..."
-curl.exe -L -o "HxDSetup.zip" "https://mh-nexus.de/downloads/HxDSetup.zip"
+Write-Host "[*] Downloading HxDSetup.zip ..."
+curl.exe -f -L -A "Mozilla/5.0" -o "HxDSetup.zip" "https://mh-nexus.de/downloads/HxDSetup.zip"
+if ((Get-Item "HxDSetup.zip").Length -lt 1MB) { throw "Download too small / failed" }
 
 Write-Host "[*] Extracting installer ..."
 Expand-Archive -Path "HxDSetup.zip" -DestinationPath $TmpDir -Force
 
-Write-Host "[*] Running installer ..."
-Start-Process -FilePath ".\HxDSetup.exe" -ArgumentList "/SILENT" -Wait
+$Setup = Get-ChildItem $TmpDir -Filter "HxDSetup.exe" -Recurse | Select-Object -First 1
+if (-not $Setup) { throw "HxDSetup.exe not found after extract" }
+
+Write-Host "[*] Running installer silently ..."
+Start-Process -FilePath $Setup.FullName -ArgumentList "/SILENT" -Wait
 
 Remove-Item -Recurse -Force $TmpDir -ErrorAction SilentlyContinue
-Write-Host "[+] HxD installed (default location)."
+Write-Host "[+] HxD installed (default location + Start Menu entry created by installer)."

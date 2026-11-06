@@ -11,12 +11,17 @@ New-Item -ItemType Directory -Force -Path $InstallDir | Out-Null
 New-Item -ItemType Directory -Force -Path $StartMenu | Out-Null
 Set-Location $TmpDir
 
-Write-Host "[*] Downloading JetBrains dotPeek ..."
-curl.exe -L -o "dotPeek.zip" "https://download.jetbrains.com/dotnet/dotPeek64.2024.3.zip"
+Write-Host "[*] Downloading JetBrains dotPeek (latest portable) ..."
+# JetBrains uses versioned URLs; this is a known working recent portable package pattern
+curl.exe -f -L -o "dotPeek.zip" "https://download.jetbrains.com/dotnet/dotPeek64.2025.3.zip"
+if ((Get-Item "dotPeek.zip").Length -lt 5MB) {
+    Write-Host "[!] Primary URL failed, trying alternate ..."
+    curl.exe -f -L -o "dotPeek.zip" "https://download.jetbrains.com/dotnet/dotPeek64.2024.3.zip"
+}
+if ((Get-Item "dotPeek.zip").Length -lt 5MB) { throw "Download too small / failed" }
 
 Write-Host "[*] Extracting ..."
 Expand-Archive -Path "dotPeek.zip" -DestinationPath $InstallDir -Force
-
 $Exe = Get-ChildItem $InstallDir -Recurse -Filter "dotPeek64.exe" | Select-Object -First 1
 if (-not $Exe) { $Exe = Get-ChildItem $InstallDir -Recurse -Filter "dotPeek*.exe" | Select-Object -First 1 }
 
@@ -25,7 +30,6 @@ $Shortcut = $WshShell.CreateShortcut("$Desktop\dotPeek.lnk")
 $Shortcut.TargetPath = $Exe.FullName
 $Shortcut.WorkingDirectory = $Exe.DirectoryName
 $Shortcut.Save()
-
 $Shortcut = $WshShell.CreateShortcut("$StartMenu\dotPeek.lnk")
 $Shortcut.TargetPath = $Exe.FullName
 $Shortcut.WorkingDirectory = $Exe.DirectoryName
