@@ -3,5 +3,5 @@ curl.exe -L `
   -o "$env:TEMP\wireshark.msi"
 
 Start-Process msiexec.exe `
-  -ArgumentList '/i',"$env:TEMP\wireshark.msi",'/qn','/norestart' `
+  -ArgumentList '/i',"$env:TEMP\setup.msi",'/qn','/norestart' `
   -Wait
