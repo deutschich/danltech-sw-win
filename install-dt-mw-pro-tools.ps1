@@ -76,7 +76,8 @@ $Packages = @(
     [pscustomobject]@{ Name = "YARA";         File = "install-yara.ps1"         }
     [pscustomobject]@{ Name = "dnSpyEx";      File = "install-dnspyex.ps1"      }
     [pscustomobject]@{ Name = "ILSpy";        File = "install-ilspy.ps1"        }
-    [pscustomobject]@{ Name = "dotPeek";      File = "install-dotpeek.ps1"      }
+    # DotPeek is Broken...
+    # [pscustomobject]@{ Name = "dotPeek";      File = "install-dotpeek.ps1"      }
 )
 
 # ============================================================
